@@ -1,16 +1,27 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: upsit
-  Date: 10.08.2017
-  Time: 17:37
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE HTML>
+
 <html>
 <head>
-    <title>Table</title>
+    <title>Schema</title>
 </head>
 <body>
+<table>
+    <tr>
+        <th></th>
+        <th>ID</th>
+        <th>Age</th>
+        <th>Name</th>
+    </tr>
 
+    <jsp:useBean id="customers" scope="request" type="java.util.List"/>
+    <c:forEach var="customer" items="${customers}">
+        <tr>
+            <td>${customer.id}</td>
+            <td>${customer.age}</td>
+            <td>${customer.name}</td>
+        </tr>
+    </c:forEach>
+</table>
 </body>
 </html>

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
 import com.iba.sitkinke.XmlWorker;
+import com.iba.sitkinke.entity.Customer;
 import com.iba.sitkinke.resource.ConfigurationManager;
 
 /**
@@ -43,7 +45,9 @@ public class SendXmlCommand implements ActionCommand {
         catch (IOException e) {
             e.printStackTrace();
         }
-        String result = XmlWorker.printAttributes(fileContent);
+        List<Customer> customers = XmlWorker.getEntities(fileContent);
+
+        request.setAttribute("customers", customers);
 
         return page;
     }

@@ -26,6 +26,8 @@ public class Controller extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String page = null;
         ActionFactory client = new ActionFactory();
         ActionCommand command = client.defineCommand(request);

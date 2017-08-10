@@ -1,15 +1,15 @@
-<?xml version="1.0"?>
-<company>
-    <staff id="1001">
-        <firstname>yong</firstname>
-        <lastname>mook kim</lastname>
-        <nickname>mkyong</nickname>
-        <salary>100000</salary>
-    </staff>
-    <staff id="2001">
-        <firstname>low</firstname>
-        <lastname>yin fong</lastname>
-        <nickname>fong fong</nickname>
-        <salary>200000</salary>
-    </staff>
-</company>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customers>
+    <customer id="100">
+        <age>29</age>
+        <name>mkyong</name>
+    </customer>
+    <customer id="220">
+        <age>22</age>
+        <name>dddd</name>
+    </customer>
+    <customer id="22">
+        <age>2</age>
+        <name>eeee</name>
+    </customer>
+</customers>
