@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
+import com.iba.sitkinke.XmlWorker;
 import com.iba.sitkinke.resource.ConfigurationManager;
 
 /**
@@ -33,17 +34,16 @@ public class SendXmlCommand implements ActionCommand {
         catch (ServletException e) {
             e.printStackTrace();
         }
-        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
-        try {
-            InputStream fileContent = filePart.getInputStream();
-            String result = new BufferedReader(new InputStreamReader(fileContent))
-                .lines().collect(Collectors.joining("\n"));
-            System.out.println(result);
 
+        InputStream fileContent = null;
+
+        try {
+            fileContent = filePart.getInputStream();
         }
         catch (IOException e) {
             e.printStackTrace();
         }
+        String result = XmlWorker.printAttributes(fileContent);
 
         return page;
     }
