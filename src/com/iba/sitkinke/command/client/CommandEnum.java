@@ -4,13 +4,15 @@ import com.iba.sitkinke.command.ActionCommand;
 import com.iba.sitkinke.command.AddRowCommand;
 import com.iba.sitkinke.command.DeleteRowCommand;
 import com.iba.sitkinke.command.GoToAddRowCommand;
+import com.iba.sitkinke.command.SaveTableCommand;
 import com.iba.sitkinke.command.SendXmlCommand;
 
 public enum CommandEnum {
     SENDXML(new SendXmlCommand()),
     DELETE(new DeleteRowCommand()),
     GOTOADD(new GoToAddRowCommand()),
-    ADDROW(new AddRowCommand());
+    ADDROW(new AddRowCommand()),
+    SAVE(new SaveTableCommand());
 
     ActionCommand command;
 

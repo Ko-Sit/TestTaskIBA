@@ -1,12 +1,20 @@
 package com.iba.sitkinke;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -51,4 +59,50 @@ public class XmlWorker {
         }
         return customers;
     }
+
+    public static File getXmlFile(List<Customer> list) {
+        File outputFile = null;
+        try {
+
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+            Document doc = docBuilder.newDocument();
+            Element rootElement = doc.createElement("customers");
+            doc.appendChild(rootElement);
+
+            Element customer;
+            for (Customer cust: list) {
+                customer = doc.createElement("customer");
+                rootElement.appendChild(customer);
+
+                customer.setAttribute("id", String.valueOf(cust.getId()));
+
+                Element age = doc.createElement("age");
+                age.appendChild(doc.createTextNode(String.valueOf(cust.getAge())));
+                customer.appendChild(age);
+
+                Element name = doc.createElement("name");
+                name.appendChild(doc.createTextNode(cust.getName()));
+                customer.appendChild(name);
+            }
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            outputFile = new File("file.xml");
+            System.out.println(outputFile.getAbsolutePath());
+            System.out.println(outputFile.getAbsoluteFile());
+            StreamResult result = new StreamResult(outputFile);
+
+            transformer.transform(source, result);
+
+        } catch (ParserConfigurationException pce) {
+            pce.printStackTrace();
+        } catch (TransformerException tfe) {
+            tfe.printStackTrace();
+        }
+        return outputFile;
+    }
+
 }

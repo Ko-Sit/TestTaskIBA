@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.iba.sitkinke.SchemaContainer;
@@ -44,7 +45,8 @@ public class SendXmlCommand implements ActionCommand {
         List<Customer> customers = XmlWorker.getEntities(fileContent);
         SchemaContainer.put(customers);
         request.setAttribute("customers", customers);
-
+        HttpSession httpSession = request.getSession();
+        httpSession.setAttribute("filename", filePart.getSubmittedFileName());
         return page;
     }
 }
