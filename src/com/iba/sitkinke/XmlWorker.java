@@ -34,7 +34,6 @@ public class XmlWorker {
 
             doc.getDocumentElement().normalize();
             NodeList nList = doc.getElementsByTagName("customer");
-            System.out.println(nList.getLength());
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -50,7 +49,6 @@ public class XmlWorker {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("gg");
         return customers;
     }
 }

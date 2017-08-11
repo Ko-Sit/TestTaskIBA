@@ -3,9 +3,8 @@
 <html>
 <head>
     <title>Schema</title>
-    <!-- <link rel="stylesheet" href="../css/style.css"> -->
+    <link rel="stylesheet" href="../css/style.css">
     <script type="text/javascript" src="../js/script.js"></script>
-    <style>#customers tr:hover {background-color: #ddd;}</style>
 </head>
 <body>
 <table id="customers">
@@ -25,9 +24,9 @@
     </c:forEach>
 </table>
 <form name="Form" method="POST" action="controller">
-    <a href="controller?command=gotoadd">Add</a>
-    <a id="deletelink" href="controller?command=delete&id=">Delete :</a>
-    <button type="submit" name="command" value="save">Save</button>
+    <a href="controller?command=gotoadd">Добавить</a>
+    <a id="deletelink" href="controller?command=delete&id=">Удалить :</a>
+    <button type="submit" name="command" value="save">Сохранить</button>
 </form>
 </body>
 </html>
