@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.iba.sitkinke.constants.Parameters;
+import com.iba.sitkinke.constants.PathConfigs;
 import com.iba.sitkinke.resource.ConfigurationManager;
 import com.iba.sitkinke.command.ActionCommand;
 import com.iba.sitkinke.command.factory.ActionFactory;
@@ -38,17 +40,16 @@ public class Controller extends HttpServlet {
         ActionFactory client = new ActionFactory();
         ActionCommand command = client.defineCommand(request);
         page = command.execute(request);
-        if (request.getParameter("command").equals("save")) {
-            String filePath = "file.xml";
+        if (request.getParameter(Parameters.COMMAND).equals(Parameters.COMMAND_SAVE)) {
+            page = ConfigurationManager.getProperty(PathConfigs.GET_FILE_PAGE);
+            String filePath = Parameters.FILE_NAME_DEFAULT;
             File downloadFile = new File(filePath);
             HttpSession httpSession = request.getSession();
-            String fileName = (String) httpSession.getAttribute("filename");
-            System.out.println(fileName);
+            String fileName = (String) httpSession.getAttribute(Parameters.FILE_NAME);
 
             FileInputStream inStream = new FileInputStream(downloadFile);
 
             String relativePath = getServletContext().getRealPath("");
-            System.out.println("relativePath = " + relativePath);
 
             ServletContext context = getServletContext();
 
@@ -56,7 +57,6 @@ public class Controller extends HttpServlet {
             if (mimeType == null) {
                 mimeType = "application/octet-stream";
             }
-            System.out.println("MIME type: " + mimeType);
 
             response.setContentType(mimeType);
             response.setContentLength((int) downloadFile.length());
@@ -82,7 +82,7 @@ public class Controller extends HttpServlet {
             dispatcher.forward(request, response);
         }
         else {
-            page = ConfigurationManager.getProperty("path.page.index");
+            page = ConfigurationManager.getProperty(PathConfigs.INDEX_PAGE);
             response.sendRedirect(request.getContextPath() + page);
         }
     }

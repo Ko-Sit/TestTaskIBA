@@ -9,13 +9,13 @@ import com.iba.sitkinke.entity.Customer;
  * Created by upsit on 11.08.2017.
  */
 public class SchemaContainer {
-    private static List list;
+    private static List<Customer> list;
 
-    public static List get() {
+    public static List<Customer> get() {
         return list;
     }
 
-    public static void put(List newList) {
+    public static void put(List<Customer> newList) {
         list = newList;
     }
 

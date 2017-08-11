@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.iba.sitkinke.constants.Parameters;
+import com.iba.sitkinke.constants.PathConfigs;
 import com.iba.sitkinke.containers.SchemaContainer;
 import com.iba.sitkinke.managers.XmlWorker;
 import com.iba.sitkinke.entity.Customer;
@@ -22,10 +24,10 @@ public class SendXmlCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        String page = ConfigurationManager.getProperty("path.page.main");
+        String page = ConfigurationManager.getProperty(PathConfigs.MAIN_PAGE);
         Part filePart = null;
         try {
-            filePart = request.getPart("file");
+            filePart = request.getPart(Parameters.FILE);
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -44,9 +46,9 @@ public class SendXmlCommand implements ActionCommand {
         }
         List<Customer> customers = XmlWorker.getEntities(fileContent);
         SchemaContainer.put(customers);
-        request.setAttribute("customers", customers);
+        request.setAttribute(Parameters.CUSTOMERS, customers);
         HttpSession httpSession = request.getSession();
-        httpSession.setAttribute("filename", filePart.getSubmittedFileName());
+        httpSession.setAttribute(Parameters.FILE_NAME, filePart.getSubmittedFileName());
         return page;
     }
 }
