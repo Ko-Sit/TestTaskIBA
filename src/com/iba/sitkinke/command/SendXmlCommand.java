@@ -1,17 +1,14 @@
 package com.iba.sitkinke.command;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
+import com.iba.sitkinke.SchemaContainer;
 import com.iba.sitkinke.XmlWorker;
 import com.iba.sitkinke.entity.Customer;
 import com.iba.sitkinke.resource.ConfigurationManager;
@@ -25,8 +22,7 @@ public class SendXmlCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page = ConfigurationManager.getProperty("path.page.main");
-        String documentName = request.getParameter("file");
-        Part filePart = null; // Retrieves <input type="file" name="file">
+        Part filePart = null;
         try {
             filePart = request.getPart("file");
         }
@@ -46,7 +42,7 @@ public class SendXmlCommand implements ActionCommand {
             e.printStackTrace();
         }
         List<Customer> customers = XmlWorker.getEntities(fileContent);
-
+        SchemaContainer.put(customers);
         request.setAttribute("customers", customers);
 
         return page;

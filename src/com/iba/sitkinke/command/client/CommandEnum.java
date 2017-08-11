@@ -1,11 +1,12 @@
 package com.iba.sitkinke.command.client;
 
 import com.iba.sitkinke.command.ActionCommand;
+import com.iba.sitkinke.command.DeleteRowCommand;
 import com.iba.sitkinke.command.SendXmlCommand;
 
 public enum CommandEnum {
-    SENDXML(new SendXmlCommand());
-
+    SENDXML(new SendXmlCommand()),
+    DELETE(new DeleteRowCommand());
     ActionCommand command;
 
     CommandEnum(ActionCommand command) {
