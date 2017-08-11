@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import com.iba.sitkinke.SchemaContainer;
-import com.iba.sitkinke.XmlWorker;
+import com.iba.sitkinke.containers.SchemaContainer;
+import com.iba.sitkinke.managers.XmlWorker;
 import com.iba.sitkinke.entity.Customer;
 import com.iba.sitkinke.resource.ConfigurationManager;
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.iba.sitkinke.SchemaContainer;
+import com.iba.sitkinke.containers.SchemaContainer;
 import com.iba.sitkinke.entity.Customer;
 import com.iba.sitkinke.resource.ConfigurationManager;
 

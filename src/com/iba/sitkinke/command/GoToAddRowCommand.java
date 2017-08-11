@@ -14,7 +14,6 @@ public class GoToAddRowCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page = ConfigurationManager.getProperty("path.page.add");
 
-
         return page;
     }
 }
