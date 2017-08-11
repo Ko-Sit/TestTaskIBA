@@ -16,4 +16,5 @@ public class Parameters {
     public static final String FILE = "file";
     public static final String FILE_NAME = "filename";
     public static final String FILE_NAME_DEFAULT = "file.xml";
+    public static final String SORT_TYPE = "order";
 }

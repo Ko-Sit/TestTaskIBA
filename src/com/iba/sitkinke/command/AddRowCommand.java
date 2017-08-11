@@ -3,6 +3,7 @@ package com.iba.sitkinke.command;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.iba.sitkinke.constants.Parameters;
 import com.iba.sitkinke.constants.PathConfigs;
@@ -28,6 +29,9 @@ public class AddRowCommand implements ActionCommand {
 
         customers.add(customer);
         request.setAttribute(Parameters.CUSTOMERS, customers);
+        HttpSession httpSession = request.getSession();
+        int order = (int) httpSession.getAttribute(Parameters.SORT_TYPE);
+        SchemaContainer.sort(order);
 
         return page;
     }

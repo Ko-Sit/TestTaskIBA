@@ -3,6 +3,7 @@ package com.iba.sitkinke.command;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.iba.sitkinke.constants.Parameters;
 import com.iba.sitkinke.constants.PathConfigs;
@@ -30,6 +31,9 @@ public class DeleteRowCommand implements ActionCommand {
                 break;
             }
         }
+
+        int order = Integer.parseInt(request.getParameter("order"));
+        SchemaContainer.sort(order);
 
         request.setAttribute(Parameters.CUSTOMERS, customers);
         return page;

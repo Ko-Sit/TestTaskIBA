@@ -1,5 +1,6 @@
 package com.iba.sitkinke.containers;
 
+import java.util.Comparator;
 import java.util.List;
 
 import com.iba.sitkinke.entity.Customer;
@@ -21,5 +22,20 @@ public class SchemaContainer {
 
     public static void clear() {
         list = null;
+    }
+
+    public static void sort(int value) {
+        switch (value) {
+            case 0:
+                list.sort(Comparator.comparingInt(Customer::getId));
+                break;
+            case 1:
+                list.sort(Comparator.comparingInt(Customer::getAge));
+                break;
+            case 2:
+                list.sort((c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
+            default:
+                break;
+        }
     }
 }

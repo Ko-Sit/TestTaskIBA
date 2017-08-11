@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <customers>
-    <customer id="100">
-        <age>29</age>
-        <name>Alex</name>
-    </customer>
     <customer id="220">
         <age>22</age>
         <name>Spider</name>
